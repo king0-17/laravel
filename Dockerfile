@@ -20,6 +20,8 @@ RUN docker-php-ext-install pdo_mysql zip exif pcntl
 RUN docker-php-ext-configure gd  --with-freetype=/usr/include/ --with-jpeg=/usr/include/ 
 RUN docker-php-ext-install gd
 
+curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+
 
 RUN apk add autoconf && pecl install -o -f redis \
 && rm -rf /tmp/pear \
