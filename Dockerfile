@@ -13,14 +13,15 @@ RUN apk update && apk add \
     unzip \
     git \
     jpegoptim optipng pngquant gifsicle \
-    curl     
+    curl
+    php-cli 
 
 
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
 RUN docker-php-ext-configure gd  --with-freetype=/usr/include/ --with-jpeg=/usr/include/ 
 RUN docker-php-ext-install gd
 
-curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
+RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 
 
 RUN apk add autoconf && pecl install -o -f redis \
@@ -29,8 +30,8 @@ RUN apk add autoconf && pecl install -o -f redis \
 
 COPY ./config/php/local.ini /usr/local/etc/php/conf.d/local.ini
 
-RUN addgroup -g 655 -S www && \
-    adduser -u 655 -S www -G www
+RUN addgroup -g 777 -S www && \
+    adduser -u 777 -S www -G www
 
 # Copy existing application directory contents
 COPY . /var/www
