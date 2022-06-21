@@ -14,7 +14,7 @@ RUN apk update && apk add \
     git \
     jpegoptim optipng pngquant gifsicle \
     curl
-    php-cli 
+   
 
 
 RUN docker-php-ext-install pdo_mysql zip exif pcntl
